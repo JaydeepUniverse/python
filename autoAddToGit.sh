@@ -5,9 +5,8 @@ lastFile1=`ls -l|grep "$lastCount1-"|awk '{print $9}'`
 git add $lastFile1
 
 read -p "Enter Git Commit message : " gitCommitMessage
-git commit -m "$gitCommitMessage"
-
 git add autoAddToGit.sh
+git commit -m "$gitCommitMessage"
 
 git status
 

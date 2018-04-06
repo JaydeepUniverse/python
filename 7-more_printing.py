@@ -11,4 +11,7 @@ end5 = "r"
 print end1 + end2,
 print end3 + end4 + end5
 
+print end1 + end2
+print end3 + end4 + end5
+
 print end1 + end2 + end3 + end4 + end5

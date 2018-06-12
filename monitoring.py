@@ -30,7 +30,7 @@ def hostnames(hostname_file):
         lines = hostname_file.readline()
         lines_without_newline = lines.rstrip()
         #print lines_without_newline
-        h1 = monitor(lines_without_newline, 22, "root", "redhat")
+        h1 = monitor(lines_without_newline, 22, "root", "xxxxxx")
         h1.commands()
         line_count = line_count + 1
 

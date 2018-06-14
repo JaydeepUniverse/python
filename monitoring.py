@@ -11,34 +11,43 @@ class monitor():
         self.username =  username
         self.password = password
 
-    def commands(self):
+    def commands1(self):
         s = paramiko.SSHClient()
         s.load_system_host_keys()
         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         s.connect(self.hostname, self.port, self.username, self.password)
-        stdin, stdout, stderr = s.exec_command('ifconfig')
-        print stdout.read()
-        stdin, stdout, stderr = s.exec_command('hostname')
-        print stdout.read()
+        stdin, stdout, stderr = s.exec_command("ifconfig eth0|grep netmask|awk '{print $2}'")
+        print stdout.channel.recv_exit_status()
+        s.close()
+
+    def commands2(self):
+        s = paramiko.SSHClient()
+        s.load_system_host_keys()
+        s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        s.connect(self.hostname, self.port, self.username, self.password)
+        stdin, stdout, stderr = s.exec_command("ifconfig ens33|grep netmask|awk '{print $2}'")
+        print stdout.channel.recv_exit_status()
         s.close()
 
 def hostnames(hostname_file):
-    hostname_file.read()
-    hostname_file.seek(0)
+    open_input_hostname_file = open(hostname_file)
     for line in [1, total_line_count]:
-        line_count = 1
-        lines = hostname_file.readline()
-        lines_without_newline = lines.rstrip()
-        #print lines_without_newline
-        h1 = monitor(lines_without_newline, 22, "root", "xxxxxx")
-        h1.commands()
-        line_count = line_count + 1
+        lines = open_input_hostname_file.readline()
+        actual_hostname = lines.rstrip()
+        if actual_hostname == "server.devops.com":
+            print actual_hostname
+            h1 = monitor(actual_hostname, 22, "root", "redhat")
+            h1.commands1()
+        else:
+            print actual_hostname
+            h2 = monitor(actual_hostname, 22, "root", "redhat")
+            h2.commands2()
+        line = line + 1
 
 script, input_hostname_file = argv
 total_line_count = len(open(input_hostname_file).readlines( ))
 #print total_line_count
-open_input_hostname_file = open(input_hostname_file)
-hostnames(open_input_hostname_file)
+hostnames(input_hostname_file)
 
 
 #hostname = "client.devops.com"

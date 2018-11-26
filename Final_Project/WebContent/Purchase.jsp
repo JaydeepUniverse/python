@@ -13,11 +13,11 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.Map.Entry"%>
-<%@page import="com.Student" %>
+<%@page import="Student" %>
 <% 
-Map<String, Student> students = (HashMap<String, Student>)request.getAttribute("students");
+Map<Integer, Student> students = (HashMap<Integer, Student>)request.getAttribute("selected_books");
  
-    for(Entry<String, Student> entry : students.entrySet())
+    for(Entry<Integer, Student> entry : students.entrySet())
     {
         Student student = entry.getValue();
         out.print("Book_ID: " + student.getId());

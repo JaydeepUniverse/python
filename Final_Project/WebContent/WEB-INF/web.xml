@@ -56,4 +56,13 @@
 		<servlet-name>book_select</servlet-name>
 		<url-pattern>/book_select</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>purchase</servlet-name>
+		<servlet-class>com.Purchase</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>purchase</servlet-name>
+		<url-pattern>/purchase</url-pattern>
+	</servlet-mapping>
 </web-app>

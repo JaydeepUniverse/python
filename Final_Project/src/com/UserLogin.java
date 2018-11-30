@@ -45,7 +45,7 @@ public class UserLogin extends HttpServlet {
 		System.out.println("in else condition");
 		RequestDispatcher rd = null;
 		PrintWriter out = res.getWriter();
-		out.write("<p id='loginMessage' style='color: red; font-size: larger;'>either mobile no. OR password is incorrect</p>");
+		out.write("<p id='loginMessage' style='color: red; font-size: larger;'>either mobile no. OR password is incorrect, OR your user details are not Registered, Plesase register to continue</p>");
 		rd = req.getRequestDispatcher("Welcome.jsp");
 		rd.include(req, res);
 	    }

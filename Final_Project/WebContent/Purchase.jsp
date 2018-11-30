@@ -5,13 +5,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="com.Book_Details"%>
 <%@page import="java.util.ArrayList"%>
+
 <html>
 <head>
+<script type="text/javascript">
+function calculate() {
+
+var USERINPUT1 = document.getElementById("input").value;
+var USERINPUT2 = document.getElementById("input").value;
+var CALC1 = USERINPUT1 + USERINPUT2;
+document.getElementById("output").innerHTML = CALC1;
+
+}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Book Store - Selected Books</title>
 
 </head>
-<form action="purchase" method="post">
+<form name="book_selected" action="purchase" method="post">
 	<table border="1" width="500">
 		<tr>
 			<th><b>Book ID</b></th>
@@ -22,7 +33,10 @@
 		</tr>
 		<%
 		    ArrayList<Book_Details> bk = (ArrayList<Book_Details>) request.getAttribute("selected_books");
-		    for (Book_Details s : bk) {
+		    for(book_details s:bk) {
+			   
+		
+		 
 		%>
 
 		<tr>
@@ -30,36 +44,19 @@
 			<td><%=s.getBook_name()%></td>
 			<td><%=s.getAuthor()%></td>
 			<td><%=s.getPrice()%></td>
-			<td><form oninput="parseInt(a.value)+parseInt(b.value)">
-					<input type="number" id="a" >
-					<input type="number" id="b" > =
-					<output name="x" for="a b"></output>
-				</form></td>
+			<td><input id="input" type="number" name="INPUT1" value="" onchange="calculate();" required></td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td><input type="submit" value="Purchase"></td>
-		</tr>
+		</tr> -->
+		
 		<%
 		    }
 		%>
 	</table>
+	<input id="output" type="number" name="OUTPUT1">
+	<input type="button" onclick="calculate();" value="Add"/>
+	<!-- <input type="submit" value="Purchase"> -->
 </form>
-<%-- <h2>Book Details :</h2>
-	<table border="1" width="80%">
-		<tr>
-			<td>Book_ID</td>
-			<td>Book_Name</td>
-			<td>Author</td>
-			<td>Price</td>
-		</tr>
-		<tr>
-			<td><%=request.getAttribute("book_id")%></td>
-			<td><%=request.getAttribute("book_name")%></td>
-			<td><%=request.getAttribute("author")%></td>
-			<td><%=request.getAttribute("price")%></td>
-		</tr>
-	</table> --%>
-
-
 </body>
 </html>

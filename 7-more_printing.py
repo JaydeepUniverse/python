@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 print "I'm learning python programming"
 print "It is going % s" % 'good'
 print "." * 10

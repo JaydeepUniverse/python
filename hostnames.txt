@@ -1,2 +1,0 @@
-server.devops.com
-client.devops.com

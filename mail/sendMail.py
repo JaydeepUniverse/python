@@ -11,7 +11,7 @@ email = "Subject: {}\n\n{}".format(subject, body)
 mailServer = "smtp.gmail.com:587"
 connection = smtplib.SMTP(mailServer)
 connection.starttls()
-connection.login("ecjaydeepsoni@gmail.com", "smrdzwkzupwijuph")
+connection.login("ecjaydeepsoni@gmail.com", "xxxxxxxxxxx")
 
 connection.sendmail(fromAddress, toAddress, email)
 connection.quit()
